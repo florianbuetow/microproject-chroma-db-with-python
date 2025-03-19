@@ -11,57 +11,46 @@ Through this project, you can experiment with:
 - Document storage and retrieval
 - Basic ChromaDB operations and queries
 
-## Scripts Usage
-
-### Setup Script
-
-```bash
-./setup.sh
-```
-
-This script sets up your development environment by:
-
-1. Creating a Python virtual environment
-2. Installing all required dependencies from requirements.txt
-3. Initializing any necessary configurations
-
-### Run Script
-
-```bash
-./run.sh
-```
-
-This script:
-
-1. Activates the Python virtual environment
-2. Executes the main application
-
 ## Prerequisites
 
-- Python 3.8 or higher
-- pip (Python package installer)
+- Docker
 - Basic understanding of vector databases and embeddings
 
 ## Getting Started
 
 1. Clone this repository
-2. Make the scripts executable:
+
+2. Build the Docker image:
+
    ```bash
-   chmod +x setup.sh run.sh
-   ```
-3. Run the setup script:
-   ```bash
-   ./setup.sh
-   ```
-4. Start the application:
-   ```bash
-   ./run.sh
+   chmod +x docker_build.sh
+   ./docker_build.sh
    ```
 
-## Contributing
+   This script will:
 
-Feel free to fork this project and submit pull requests for any improvements or additional examples.
+   - Check if Docker is installed
+   - Remove any existing image with the same name
+   - Build a new Docker image named "microproject-chromadb-python"
 
-## License
+3. Run the application:
+   ```bash
+   chmod +x docker_run.sh
+   ./docker_run.sh
+   ```
+   This script will:
+   - Check if Docker is installed
+   - Verify the image exists
+   - Run the container with:
+     - Port 8000 mapped to host
+     - Local `./chroma` directory mounted to `/data` in container
+     - Persistent storage for ChromaDB data
 
-This project is open-source and available under the MIT License.
+## Docker Configuration
+
+The project uses a custom Docker image based on `chromadb/chroma:latest` with the following features:
+
+- Uses `uv` package installer for faster Python package management
+- Configures ChromaDB to use DuckDB with Parquet storage
+- Persists data in a mounted volume
+- Exposes port 8000 for ChromaDB operations
