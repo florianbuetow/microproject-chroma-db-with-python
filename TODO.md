@@ -1,5 +1,12 @@
+# Next steps
+
+Follow the guide on [Getting Started with ChromaDB](https://docs.trychroma.com/docs/overview/getting-started)
+
+## Debug the instantiatino of the python chromadb client
+
+```bash
 What's next:
-    View a summary of image vulnerabilities and recommendations → docker scout quickview 
+    View a summary of image vulnerabilities and recommendations → docker scout quickview
 ChromaDB image built successfully.
 Traceback (most recent call last):
   File "/app/main.py", line 5, in <module>
@@ -15,3 +22,4 @@ Traceback (most recent call last):
   File "/usr/local/lib/python3.11/site-packages/chromadb/api/shared_system_client.py", line 25, in _create_system_if_not_exists
     if identifier not in cls._identifier_to_system:
        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+```
